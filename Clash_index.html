@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clash Vault</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--tg-theme-bg-color, #1e1e1e);
+            color: var(--tg-theme-text-color, #ffffff);
+            display: flex; flex-direction: column; align-items: center; 
+            margin: 0; padding: 20px;
+        }
+        h2 { color: #f1c40f; text-shadow: 1px 1px 2px #000; }
+        .card {
+            background: var(--tg-theme-secondary-bg-color, #2d2d2d);
+            border-radius: 15px; padding: 20px; margin: 15px 0;
+            width: 85%; max-width: 350px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border: 2px solid #f39c12; text-align: center;
+        }
+        .price { font-size: 1.2em; font-weight: bold; color: #2ecc71; margin-bottom: 15px;}
+        button {
+            background: linear-gradient(to bottom, #f1c40f, #e67e22);
+            color: #fff; font-weight: bold; border: none;
+            border-radius: 10px; padding: 12px 25px; cursor: pointer;
+            width: 100%; font-size: 1.1em; transition: transform 0.1s;
+        }
+        button:active { transform: scale(0.95); }
+    </style>
+</head>
+<body>
+    <h2>🏛 Золото Столицы</h2>
+    <p>Выберите набор для покупки:</p>
+    
+    <div class="card">
+        <h3>💰 5,000 Золота</h3>
+        <div class="price">150 ₽</div>
+        <button onclick="buy('5,000 Золота', 150)">Приобрести</button>
+    </div>
+
+    <div class="card">
+        <h3>💰💰 10,000 Золота</h3>
+        <div class="price">280 ₽</div>
+        <button onclick="buy('10,000 Золота', 280)">Приобрести</button>
+    </div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+
+        function buy(item, price) {
+            const data = { item: item, price: price };
+            tg.sendData(JSON.stringify(data)); 
+        }
+    </script>
+</body>
+</html>
